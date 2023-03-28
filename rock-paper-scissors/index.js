@@ -2,50 +2,7 @@
 // fourth commit, still editing and finishing up playRound function
 // fifth commit, fixed const variables for new returns in player and comp choices
 // sixth commit, fixed winnings of rounds and implemented prompt to work: next is to brush up details and work on multiple rounds
-
-
-// function getPlayerChoice() {
-
-// }
-
-
-// // this is the random computer picker
-// function getComputerChoice() {
-//     // this is the permanent options
-//     const options = ["rock","paper","scissors"];
-//     const randomChoice = options[Math.floor(Math.random() * options.length)];
-//     console.log(randomChoice + " is the computer's");
-// }
-
-// // this determines who wins the matchup
-// function playRound(playerSelection,computerSelection) { 
-
-//     if (playerSelection === computerSelection) {
-//         return 'draw';
-//     }
-//     else if (playerSelection === "rock" && computerSelection === "paper") {
-//         return 'win';
-//     }
-//     else if (playerSelection === "rock" && computerSelection === "scissors") {
-//         return 'lose';
-//     }
-//     else if (playerSelection === "paper" && computerSelection === "rock") {
-//         return 'win';
-//     }
-//     else if (playerSelection === "paper" && computerSelection === "scissors") {
-//         return 'lose';
-//     }    
-//     else if (playerSelection === "scissors" && computerSelection === "paper") {
-//         return 'win';
-//     }
-//     else (playerSelection === "scissors" && computerSelection === "rock")
-//         return 'lose';
-//     }
-    
-//     const computerSelection = getComputerChoice();
-//     const playerSelection = "rock";
-//     console.log(playRound(playerSelection,computerSelection));
-
+// 7th commit, fixed majority and now finish up last part of totalwinner
 
 
 // function game() {
@@ -55,56 +12,81 @@
 const options = ["rock", "paper", "scissors"];
 
 
-
-function game() {
-    
-}
-
-
-
 function playerOption() {
-    return prompt("Type Rock, Paper, or Scissors");
-}
+    input = prompt("Type Rock, Paper, or Scissors");
+    return input.toLowerCase();
+    }
 
+    // const playerChoice = playerOption();
 
+    // console.log(playerChoice);
 
-const playerChoice = playerOption();
+    // playerOption();
 
-console.log(playerChoice);
 
 function randomComputerOption() {
     return options[Math.floor(Math.random() * options.length)];
 }
 
-const compChoice = randomComputerOption();
+// const compChoice = randomComputerOption();
 
-console.log(compChoice);
+// console.log(compChoice);
+
+function playRound() {
+    const playerChoice = playerOption();
+    const compChoice = randomComputerOption();
+    console.log(compChoice);
+    const winner = checkWinner(playerChoice,compChoice);
+    const score = checkScore(winner);
+    console.log(score);
+}
+
+// playRound();
 
 
 
-function playRound(playerChoice,compChoice) {
-    if (playerChoice === compChoice) {
-        return 'draw';
+function checkWinner(choiceP,choiceC) {
+    if(choiceP === choiceC) {
+        return "Draw!";
     }
-    else if (playerChoice === "rock" && compChoice === "paper") {
-        return 'win';
+    else if( 
+        (choiceP === "rock" && choiceC === "scissors") || 
+        (choiceP === "paper" && choiceC === "rock") || 
+        (choiceP === "scissors" && choiceC === "paper")
+        ) {
+        return "You Win!";
+    } 
+    else {
+        return "You Lose!";
     }
-    else if (playerChoice === "rock" && compChoice === "scissors") {
-        return 'lose';
-    }
-    else if (playerChoice === "paper" && compChoice === "rock") {
-        return 'win';
-    }
-    else if (playerChoice === "paper" && compChoice === "scissors") {
-        return 'lose';
-    }    
-    else if (playerChoice === "scissors" && compChoice === "paper") {
-        return 'win';
-    }
-    else (playerChoice === "scissors" && compChoice === "rock")
-        return 'lose';
-    }
+}
 
-const result = playRound(playerChoice,compChoice);
+let playerScore = 0;
+let computerScore = 0;
 
-console.log(result);
+function checkScore(winner) {
+    if (winner === "You Win!") {
+        playerScore++;
+        return "Player Score: " + playerScore;
+}
+    else if (winner === "You Lose!") {
+        computerScore++;
+        return "Computer Score: " + computerScore;
+    }
+    else {
+        return "Computer Score: " + computerScore + " Player Score: " + playerScore;
+    }
+}
+
+function totalWinner(total);
+    if (total)
+
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playRound();
+    }
+    console.log("Game Over!")
+}
+
+game();
