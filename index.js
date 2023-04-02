@@ -8,6 +8,7 @@ const paperButton = document.querySelector('.paper-btn');
 const scissorsButton = document.querySelector('.scissors-btn');
 const outcomeDiv = document.querySelector('.outcome');
 let scoreboardEl = document.getElementById('scoreboard-el');
+const totalDiv = document.querySelector('.win-el');
 
 function randomComputerOption() {
     return options[Math.floor(Math.random() * options.length)];
@@ -27,18 +28,27 @@ function playRound(playerSelection) {
 
 rockButton.addEventListener('click' , () => {
     const score = playRound('rock');
-    checkScore(score.winner);
+    const tallyScore = checkScore(score.winner);
+    console.log(tallyScore);
+    const finalWinner = gameWin();
+    console.log(finalWinner);
 })
 
 paperButton.addEventListener('click' , () => {
     const score = playRound('paper');
-    checkScore(score.winner);
+    const tallyScore = checkScore(score.winner);
+    console.log(tallyScore);    
+    const finalWinner = gameWin();
+    console.log(finalWinner);
 
 })
 
 scissorsButton.addEventListener('click' , () => {
     const score = playRound('scissors');
-    checkScore(score.winner);
+    const tallyScore = checkScore(score.winner);
+    console.log(tallyScore);
+    const finalWinner = gameWin();
+    console.log(finalWinner);
 })
 
 
@@ -48,7 +58,7 @@ function checkWinner(choiceP,choiceC) {
         const p = document.createElement('p');
         p.innerText = "Draw!";
         outcomeDiv.appendChild(p);
-        return "Draw!";
+        return "Draw!"
     }
     else if( 
         (choiceP === "rock" && choiceC === "scissors") || 
@@ -87,15 +97,30 @@ function checkScore(winner) {
     return scoreText;
 }
 
-function endWinner(numb1,numb2) {
-    if (numb1 > numb2) {
-        return "Player Wins The Game!"
+// function endWinner(numb1,numb2) {
+//     if (numb1 > numb2) {
+//         return "Player Wins The Game!"
+//     }
+//     else if (numb2 === numb1) {
+//         return "Nobody Wins! Its a Tie!"
+//     }
+//     else {
+//         return "Computer Wins the Game!"
+//     }
+// }
+
+function gameWin () {
+    if (playerScore === 5) {
+        const winGame = document.createElement('p');
+        winGame.innerText = "Game Over! Player Wins!";
+        totalDiv.appendChild(winGame);
+        return "Game Over! Player Wins!"
     }
-    else if (numb2 === numb1) {
-        return "Nobody Wins! Its a Tie!"
-    }
-    else {
-        return "Computer Wins the Game!"
+    else if (computerScore === 5) {
+        const winGame = document.createElement('p');
+        winGame.innerText = "Game Over! Computer Wins!";
+        totalDiv.appendChild(winGame);
+        return "Game Over! Computer Wins!"
     }
 }
 
