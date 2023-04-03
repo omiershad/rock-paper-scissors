@@ -57,6 +57,7 @@ function checkWinner(choiceP,choiceC) {
     if(choiceP === choiceC) {
         const p = document.createElement('p');
         p.innerText = "Draw!";
+        p.classList.add("single-round");
         outcomeDiv.appendChild(p);
         return "Draw!"
     }
@@ -67,12 +68,14 @@ function checkWinner(choiceP,choiceC) {
         ) {
         const p = document.createElement('p');
         p.innerText = "You Win!";
+        p.classList.add("single-round");
         outcomeDiv.appendChild(p);
         return "You Win!";
     } 
     else {
         const p = document.createElement('p');
         p.innerText = "You Lose!";
+        p.classList.add("single-round");
         outcomeDiv.appendChild(p);
         return "You Lose!";
     }
@@ -97,38 +100,24 @@ function checkScore(winner) {
     return scoreText;
 }
 
-// function endWinner(numb1,numb2) {
-//     if (numb1 > numb2) {
-//         return "Player Wins The Game!"
-//     }
-//     else if (numb2 === numb1) {
-//         return "Nobody Wins! Its a Tie!"
-//     }
-//     else {
-//         return "Computer Wins the Game!"
-//     }
-// }
-
 function gameWin () {
     if (playerScore === 5) {
         const winGame = document.createElement('p');
         winGame.innerText = "Game Over! Player Wins!";
+        winGame.classList.add("win-round");
         totalDiv.appendChild(winGame);
         return "Game Over! Player Wins!"
     }
     else if (computerScore === 5) {
         const winGame = document.createElement('p');
         winGame.innerText = "Game Over! Computer Wins!";
+        winGame.classList.add("win-round");
         totalDiv.appendChild(winGame);
         return "Game Over! Computer Wins!"
     }
 }
 
-
-// function game() {
-//     for (let i = 0; i < 5; i++) {
-//         playRound();
-//     }
-//     const gameWinner = endWinner(playerScore,computerScore);
-//     console.log(gameWinner);
-//     console.log("Game Over!") }
+const restartEl = document.querySelector(".restart-el");
+restartEl.addEventListener('click', () =>{
+    location.reload();
+})
